@@ -45,28 +45,34 @@ for (let circle of circles) {
             }
             if (circlesArray.length == 15){
                     if (answer.length == 0){
-                        alert("Вы превысили число попыток, попробуйте снова, страница обновляется...");
+                        localStorage.setItem('loses', Number(loses) ? Number(loses)+1 : 0)
+                        alert(`Вы превысили число попыток, попробуйте снова! Счётчик проигрышей - ${loses} страница обновляется...`);
                         location.reload();
                     }else if (answer.length == 1){
-                        alert("Вы превысили число попыток, но нашли одну цифру, поздравляю, попробуйте ещё! Страница обновляется...");
+                        localStorage.setItem('loses', Number(loses) ? Number(loses)+1 : 0)
+                        alert(`Вы превысили число попыток, но нашли одну цифру, поздравляю, попробуйте ещё! Счётчик проигрышей - ${loses} Страница обновляется...`);
                         location.reload();
                     }else if (answer.length == 2){
-                        alert("Вы превысили число попыток, но нашли две цифры, поздравляю, попробуйте ещё! Страница обновляется...");
+                        localStorage.setItem('loses', Number(loses) ? Number(loses)+1 : 0)
+                        alert(`Вы превысили число попыток, но нашли две цифры, поздравляю, попробуйте ещё! Счётчик проигрышей - ${loses} Страница обновляется...`);
                         location.reload();
                     }else if (answer.length == 3){
-                        alert("Вы превысили число попыток, но нашли три цифры, поздравляю, попробуйте ещё! Страница обновляется...");
+                        localStorage.setItem('loses', Number(loses) ? Number(loses)+1 : 0)
+                        alert(`Вы превысили число попыток, но нашли три цифры, поздравляю, попробуйте ещё! Счётчик проигрышей - ${loses} Страница обновляется...`);
                         location.reload();
                     }else if (answer.length == 4){
-                        alert("Вы превысили число попыток, но нашли четыре цифры, было близко, попробуйте ещё! Страница обновляется...");
+                        localStorage.setItem('loses', Number(loses) ? Number(loses)+1 : 0)
+                        alert(`Вы превысили число попыток, но нашли четыре цифры, было близко, попробуйте ещё! Счётчик проигрышей - ${loses} Страница обновляется...`);
                         location.reload();
                     }else if (answer.length == 5){
-                        
+                        localStorage.setItem('wins', wins ? Number(wins)+1 : 0)
+                        alert(`Поздравляю, вы выиграли! Счётчик побед - ${wins} Страница перезагружается...`);
+                        location.reload();
                     }
             }else{
                 circlesArray.push(circle.id);
                 console.log(circlesArray);
             }
-
         }
         if(answer.length === 5){
             localStorage.setItem('wins', wins ? Number(wins)+1 : 0)
@@ -95,9 +101,33 @@ setInterval(() => {
     chose_3.innerHTML = answer[2] ? answer[2] : "**";
     chose_4.innerHTML = answer[3] ? answer[3] : "**";
     chose_5.innerHTML = answer[4] ? answer[4] : "**";
-    if (chose_1 == "**"){
-        chose_1.classList.remove('active');
-    }else{
+    if (chose_1.innerHTML == answer[0]){
         chose_1.classList.add('active');
+    }else{
+        chose_1.classList.remove('active');
+    }
+
+    if (chose_2.innerHTML == answer[1]){
+        chose_2.classList.add('active');
+    }else{
+        chose_2.classList.remove('active');
+    }
+
+    if (chose_3.innerHTML == answer[2]){
+        chose_3.classList.add('active');
+    }else{
+        chose_3.classList.remove('active');
+    }
+
+    if (chose_4.innerHTML == answer[3]){
+        chose_4.classList.add('active');
+    }else{
+        chose_4.classList.remove('active');
+    }
+
+    if (chose_5.innerHTML == answer[4]){
+        chose_5.classList.add('active');
+    }else{
+        chose_5.classList.remove('active');
     }
 }, 1);
